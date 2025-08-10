@@ -16,19 +16,20 @@
 </template>
 
 <script setup>
-import { useAsyncData } from 'nuxt/app';
+import { useAsyncData } from "nuxt/app";
 
-const search = ref('');
+const search = ref("");
 
 const filteredUsers = computed(() =>
   users
-    ? users.value.filter((user) =>
+    ? // add question mark is necessary to avoid runtime error in SPA mode
+      users.value?.filter((user) =>
         user.name.toLowerCase().includes(search.value.toLowerCase())
       )
     : []
 );
 
 const { data: users } = useAsyncData(() =>
-  fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json())
+  fetch("https://jsonplaceholder.typicode.com/users").then((res) => res.json())
 );
 </script>
