@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     //OR
     // The static gallery page will be regenerated if a request comes in
     // after it's at least 1 hour old.
-    // "/gallery": { isr: 3600 },
+    "/gallery": { isr: 3600 },
   },
   modules: ["@nuxt/image"],
   css: ["~/assets/css/main.css"],
