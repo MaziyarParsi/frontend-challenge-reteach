@@ -1,15 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  // This line disables SSR and enables SPA mode
-  // ssr: false,
   routeRules: {
-    // Cache the gallery page for 60 seconds using SWR
-    // '/gallery': { swr: 60 }
-    //OR
-    // The static gallery page will be regenerated if a request comes in
-    // after it's at least 1 hour old.
+    // Enable ISR for gallery page (this will pre-render and cache)
     "/gallery": { isr: 3600 },
+    // Disable SSR for all other pages (SPA mode)
+    "/": { ssr: false },
+    "/user/**": { ssr: false },
   },
   modules: ["@nuxt/image"],
   css: ["~/assets/css/main.css"],
